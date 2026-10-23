@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .d { stroke-dasharray: 1 1; stroke-dashoffset: 1; animation: draw 2s cubic-bezier(.65,0,.35,1) .4s forwards; }
+    .d2 { animation-delay: 1s; }
+    .s { transform-box: fill-box; transform-origin: center; animation: tw 4s ease-in-out infinite; }
+    .s2 { animation-delay: -2s; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes tw { 0%,100% { transform: scale(.8) rotate(0); } 50% { transform: scale(1.1) rotate(18deg); } }
+    @media (prefers-reduced-motion: reduce) { .d { animation: none; stroke-dasharray: none; } .s { animation: none; } }
+  </style>
+  <path class="d" pathLength="1" stroke="#F4B942" stroke-opacity=".55" stroke-width="3.5" d="M20 280c40-70 90-84 100-44 9 36-40 46-30 8 11-42 80-54 104-10 20 38-28 52-22 14 8-44 90-62 122-16 18 26 54 40 110 30"/>
+  <path class="d d2" pathLength="1" stroke="#FFFFFF" stroke-opacity=".25" stroke-width="3" d="M60 200c30-30 60-30 80 0s50 30 80 0 50-30 80 0"/>
+  <path class="s" fill="#F4B942" fill-opacity=".8" d="M400 210c1 10 5 14 15 15-10 1-14 5-15 15-1-10-5-14-15-15 10-1 14-5 15-15Z"/>
+  <path class="s s2" fill="#FFB4A2" fill-opacity=".8" d="M190 150c.8 7 3 9.4 10 10-7 .8-9.2 3-10 10-.8-7-3-9.2-10-10 7-.6 9.2-3 10-10Z"/>
+  <circle cx="460" cy="270" r="5" fill="#7EE0D2" fill-opacity=".7"/>
+  <circle cx="120" cy="150" r="4" fill="#F4B942" fill-opacity=".6"/>
+</svg>

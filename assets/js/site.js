@@ -16,6 +16,32 @@
     });
   }
 
+  /* ---------- Hand-drawn lines and scroll reveals ---------- */
+  var revealTargets = ".section-head, .why-intro, .faq-intro, .split-head, .pathway-card, .feature, .skill-item, " +
+    ".resource-card, .case-card, .info-card, .steps li, .level-selector, .accordion-item, .form-card, .about-copy";
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var drawables = $$("[data-draw]");
+  var reveals = $$(revealTargets).filter(function (el) { return !el.closest(".hero"); });
+
+  if (still || !("IntersectionObserver" in window)) {
+    drawables.forEach(function (el) { el.classList.add("is-drawn"); });
+  } else {
+    // Stagger siblings so grids appear one card after another
+    reveals.forEach(function (el) {
+      var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.setProperty("--reveal-delay", Math.min(i, 5) * 0.08 + "s");
+      el.classList.add("reveal");
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add(entry.target.hasAttribute("data-draw") ? "is-drawn" : "is-in");
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.15 });
+    drawables.concat(reveals).forEach(function (el) { io.observe(el); });
+  }
+
   /* ---------- Footer year ---------- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 

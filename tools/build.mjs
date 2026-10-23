@@ -61,8 +61,11 @@ function resourceCards(limit, exclude) {
   return `<div class="resource-grid">${list.map((r) => resourceCard(r)).join("\n")}</div>`;
 }
 
+const caseColours = ["c-coral", "c-teal", "c-violet", "c-sky", "c-pink", "c-sun"];
+
 function caseCard(c) {
-  return `<article class="case-card">
+  const colour = caseColours[caseStudies.indexOf(c) % caseColours.length];
+  return `<article class="case-card ${colour}">
   <div class="case-card-top"><span class="chip">Example journey</span><span class="case-weeks">${c.weeks}-week plan</span></div>
   <span class="icon-tile">${icon(c.icon)}</span>
   <p class="case-learner">${esc(c.learner)}</p>
@@ -98,7 +101,25 @@ function expand(html, ctx = {}) {
       return `<div class="resource-grid">${picked.join("\n")}</div>`;
     })
     .replace(/\{\{case-cards\}\}/g, () => caseCards(ctx.slug))
-    .replace(/\{\{category-filters\}\}/g, categoryFilters);
+    .replace(/\{\{category-filters\}\}/g, categoryFilters)
+    .replace(/\{\{doodle:([\w-]+)(?::([\w -]+))?\}\}/g, (_, n, c) => doodle(n, c || ""))
+    .replace(/<span class="scribble([^"]*)">([^<]+)<\/span>/g, (_, cls, text) => scribble(text, cls));
+}
+
+// ---------- hand-drawn decorations ----------
+// Doodles live in _src/doodles/*.svg. Paths with class="draw" (and pathLength="1")
+// animate as if drawn by hand when they scroll into view (see site.js / style.css).
+function doodle(name, extra) {
+  const file = path.join(SRC, "doodles", name + ".svg");
+  if (!fs.existsSync(file)) throw new Error("Missing doodle: " + name);
+  const cls = `doodle doodle-${name} ${extra}`.trim();
+  const svg = fs.readFileSync(file, "utf8").trim();
+  return svg.replace("<svg", `<svg class="${cls}" data-draw aria-hidden="true" focusable="false"`);
+}
+
+// <span class="scribble c-coral">words</span> → words with a drawn underline beneath.
+function scribble(text, cls) {
+  return `<span class="scribble${cls}" data-draw>${text}<svg class="scribble-line" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path class="draw" pathLength="1" d="M4 15C45 7 95 5 140 9s46 6 56-1"/><path class="draw draw-late" pathLength="1" d="M20 20c50-6 110-7 166-4"/></svg></span>`;
 }
 
 // ---------- layout ----------

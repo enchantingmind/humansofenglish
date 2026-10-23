@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 270" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .d { stroke-dasharray: 1 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.65,0,.35,1) forwards; }
+    .d2 { animation-delay: .5s; } .d3 { animation-delay: .9s; } .d4 { animation-delay: 1.2s; }
+    .s { transform-box: fill-box; transform-origin: center; animation: tw 3.6s ease-in-out infinite; }
+    .s2 { animation-delay: -1.4s; } .s3 { animation-delay: -2.4s; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes tw { 0%,100% { transform: scale(.8) rotate(0); } 50% { transform: scale(1.1) rotate(18deg); } }
+    @media (prefers-reduced-motion: reduce) { .d { animation: none; stroke-dasharray: none; } .s { animation: none; } }
+  </style>
+  <!-- speech bubble outline -->
+  <path class="d" pathLength="1" stroke="#8B5CF6" stroke-width="3.5" d="M196 40c40-8 104-6 128 8 22 14 14 44-14 54-24 9-62 10-88 4l-26 20 6-26c-24-10-32-30-22-44 4-7 10-12 16-16"/>
+  <!-- little lines inside bubble ("text") -->
+  <path class="d d2" pathLength="1" stroke="#8B5CF6" stroke-width="3.5" d="M216 66h70M216 82h46"/>
+  <!-- looping line -->
+  <path class="d d3" pathLength="1" stroke="#FF7A59" stroke-width="3.5" d="M30 210c26-40 52-48 58-24 5 22-24 28-18 5 7-26 46-32 60-6 12 22-16 30-12 8 5-26 50-36 70-10 12 16 30 26 60 20"/>
+  <!-- spiral -->
+  <path class="d d2" pathLength="1" stroke="#14B8A6" stroke-width="3.5" d="M362 176c0-4-6-5-8-1-3 6 4 12 11 10 10-3 11-16 3-22-11-8-27-1-29 13-2 16 13 28 29 26 20-3 30-24 22-42"/>
+  <!-- underline squiggle -->
+  <path class="d d4" pathLength="1" stroke="#F472B6" stroke-width="3.5" d="M250 244c8-10 14-10 20 0s14 10 20 0 14-10 20 0 14 10 20 0"/>
+  <!-- sparkles -->
+  <path class="s" fill="#F4B942" d="M120 40c1 10 5 14 15 15-10 1-14 5-15 15-1-10-5-14-15-15 10-1 14-5 15-15Z"/>
+  <path class="s s2" fill="#38BDF8" d="M392 92c1 7 3 9 10 10-7 1-9 3-10 10-1-7-3-9-10-10 7-1 9-3 10-10Z"/>
+  <path class="s s3" fill="#FF7A59" d="M70 120c.6 5 2.4 7 7.4 7.6-5 .6-6.8 2.6-7.4 7.4-.6-4.8-2.4-6.8-7.4-7.4 5-.6 6.8-2.6 7.4-7.6Z"/>
+  <!-- dots -->
+  <circle cx="176" cy="150" r="5" fill="#14B8A6"/>
+  <circle cx="300" cy="140" r="4" fill="#F4B942"/>
+  <circle cx="150" cy="96" r="3.5" fill="#F472B6"/>
+</svg>
