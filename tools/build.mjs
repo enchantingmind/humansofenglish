@@ -280,6 +280,16 @@ ${ctaBand()}
 </main>`;
 }
 
+// Rewrite root-relative URLs ("/about/") to page-relative ones ("../about/") so the
+// site also works when opened straight from disk. 404.html keeps absolute URLs
+// because GitHub Pages serves it at whatever path was requested.
+function relativize(html, route) {
+  if (route === "/404") return html;
+  const depth = route.split("/").filter(Boolean).length;
+  const prefix = depth ? "../".repeat(depth) : "./";
+  return html.replace(/\b(href|src)="\/(?!\/)/g, `$1="${prefix}`);
+}
+
 // ---------- pages ----------
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
@@ -343,7 +353,7 @@ ${footer()}
 `;
   const out = outFile(route);
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, html);
+  fs.writeFileSync(out, relativize(html, route));
   built.push(route);
 }
 

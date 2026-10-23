@@ -7,6 +7,15 @@
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
 
+  /* ---------- Opened from disk (file://): folder links need an explicit index.html ---------- */
+  if (location.protocol === "file:") {
+    $$("a[href]").forEach(function (a) {
+      var href = a.getAttribute("href");
+      if (/^[a-z]+:/i.test(href) || href.charAt(0) === "#") return;
+      a.setAttribute("href", href.replace(/\/(?=$|[?#])/, "/index.html"));
+    });
+  }
+
   /* ---------- Footer year ---------- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -247,7 +256,9 @@
         return;
       }
 
-      setStatus("info", "<strong>Thanks, " + firstName + ". Your details look good.</strong>This form isn't connected to an inbox yet, so your message has <em>not</em> been sent and nothing has been stored. Please check back soon. In the meantime, our <a href=\"/learning-resources/\">free learning resources</a> are open to everyone.");
+      var navLink = $('.nav-list a[href*="learning-resources"]');
+      var resourcesHref = escapeHtml(navLink ? navLink.getAttribute("href") : "/learning-resources/");
+      setStatus("info", "<strong>Thanks, " + firstName + ". Your details look good.</strong>This form isn't connected to an inbox yet, so your message has <em>not</em> been sent and nothing has been stored. Please check back soon. In the meantime, our <a href=\"" + resourcesHref + "\">free learning resources</a> are open to everyone.");
     });
   });
 })();
