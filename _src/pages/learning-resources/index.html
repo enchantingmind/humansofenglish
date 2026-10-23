@@ -1,0 +1,55 @@
+<!--meta {
+  "title": "Free English Learning Resources",
+  "description": "Free, practical English guides on speaking, listening, vocabulary, writing, IELTS preparation and professional communication. Search and filter by topic."
+} -->
+<main id="main">
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Learning Resources</span></li></ol></nav>
+    <p class="eyebrow">Learning resources</p>
+    <h1>A little English every day.</h1>
+    <p class="lede">Free, practical guides written by the Humans of English team. Each one takes just a few minutes to read and gives you something to practise straight away.</p>
+  </div>
+</header>
+
+<section class="section" aria-labelledby="library-heading" data-resource-library>
+  <div class="container">
+    <h2 id="library-heading" class="sr-only">Browse resources</h2>
+    <div class="resource-toolbar">
+      <div class="search-field">
+        <label for="resource-search" class="sr-only">Search resources</label>
+        {{icon:search}}
+        <input id="resource-search" type="search" placeholder="Search, e.g. IELTS, vocabulary" autocomplete="off">
+      </div>
+      {{category-filters}}
+    </div>
+    <p class="results-count" data-results-count aria-live="polite"></p>
+    {{resource-cards}}
+    <div class="empty-state" data-empty-state hidden>
+      {{icon:search}}
+      <p><strong>No resources match your search.</strong></p>
+      <p>Try a different word, or show all topics.</p>
+      <button type="button" class="btn btn-secondary" data-reset-filters>Show all resources</button>
+    </div>
+  </div>
+</section>
+
+<section class="section section-surface" aria-labelledby="study-tips-heading">
+  <div class="container split">
+    <div class="split-head">
+      <p class="eyebrow">How to use these guides</p>
+      <h2 id="study-tips-heading">Make free resources work harder.</h2>
+      <p class="section-intro">Reading about English helps, but using it is what changes your level. Try this simple routine with any guide.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Read once for ideas</h3><p>Don't stop for every new word. Get the main message first.</p></li>
+      <li><h3>Choose one thing to try</h3><p>Pick a single tip or phrase you can use today.</p></li>
+      <li><h3>Use it out loud</h3><p>Say it, write it or record it. Practice makes it yours.</p></li>
+      <li><h3>Come back in a week</h3><p>Re-read and notice what now feels easy. That's progress.</p></li>
+    </ol>
+  </div>
+</section>
+
+{{include:cta-band}}
+</main>

@@ -1,0 +1,46 @@
+<form class="contact-form" data-contact-form novalidate>
+  <p class="form-required-note"><span aria-hidden="true">*</span> Required field</p>
+
+  <div class="field">
+    <label for="cf-name">Full name <span class="req" aria-hidden="true">*</span></label>
+    <input id="cf-name" name="name" type="text" autocomplete="name" required aria-describedby="cf-name-error" maxlength="120">
+    <p class="field-error" id="cf-name-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-email">Email address <span class="req" aria-hidden="true">*</span></label>
+    <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="cf-email-error" maxlength="200">
+    <p class="field-error" id="cf-email-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-goal">Learning goal <span class="req" aria-hidden="true">*</span></label>
+    <div class="select-wrap">
+      <select id="cf-goal" name="goal" required aria-describedby="cf-goal-error">
+        <option value="">Choose your main goal</option>
+        <option>IELTS preparation</option>
+        <option>TOEFL preparation</option>
+        <option>Another English exam</option>
+        <option>Spoken English &amp; communication</option>
+        <option>Professional English</option>
+        <option>I'm not sure yet</option>
+      </select>
+      {{icon:chevron-down:select-icon}}
+    </div>
+    <p class="field-error" id="cf-goal-error" hidden></p>
+  </div>
+
+  <div class="field">
+    <label for="cf-message">Message <span class="optional">(optional)</span></label>
+    <textarea id="cf-message" name="message" rows="4" maxlength="2000" aria-describedby="cf-message-hint"></textarea>
+    <p class="field-hint" id="cf-message-hint">For example: your deadline, target score, or what feels hardest right now.</p>
+  </div>
+
+  <p class="form-mode" data-form-mode>{{icon:info}}<span>This form is not connected to an inbox yet, so messages are not sent anywhere.</span></p>
+
+  <button class="btn btn-primary btn-lg btn-block" type="submit" data-submit-label>Send message {{icon:arrow-right}}</button>
+
+  <div class="form-status" data-form-status role="status" aria-live="polite" tabindex="-1" hidden></div>
+
+  <noscript><p class="form-mode">The contact form needs JavaScript to check your details.</p></noscript>
+</form>
