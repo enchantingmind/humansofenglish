@@ -1086,6 +1086,10 @@ td { color: var(--color-text-muted); }
 .back-to-top { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 40px; font-weight: 600; }
 .back-to-top .icon { width: 16px; height: 16px; }
 .footer-bottom p { margin: 0; }
+.footer-credits { display: grid; gap: var(--space-1); }
+.made-by { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.3em; }
+.made-by .heart { width: 14px; height: 14px; color: var(--color-accent); fill: var(--color-accent); }
+.made-by a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: reduce) {

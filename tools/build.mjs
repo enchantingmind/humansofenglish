@@ -159,7 +159,10 @@ function footer() {
     ])}
   </div>
   <div class="container footer-bottom">
-    <p>&copy; <span data-year>2026</span> Humans of English. All rights reserved.</p>
+    <div class="footer-credits">
+      <p>&copy; <span data-year>2026</span> Humans of English. All rights reserved.</p>
+      <p class="made-by">Made with ${icon("heart", "heart")}<span class="sr-only">love</span> by <a href="https://tavzuran.com/" rel="noopener">Tavzuran</a></p>
+    </div>
     <a class="back-to-top" href="#top">${icon("arrow-up")}Back to top</a>
   </div>
 </footer>`;
