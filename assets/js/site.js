@@ -18,7 +18,7 @@
 
   /* ---------- Hand-drawn lines and scroll reveals ---------- */
   var revealTargets = ".section-head, .why-intro, .faq-intro, .split-head, .pathway-card, .feature, .skill-item, " +
-    ".resource-card, .case-card, .info-card, .steps li, .level-selector, .accordion-item, .form-card, .about-copy";
+    ".resource-card, .case-card, .course-card, .study-plan li, .includes-grid li, .info-card, .steps li, .level-selector, .accordion-item, .form-card, .about-copy";
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var drawables = $$("[data-draw]");
   var reveals = $$(revealTargets).filter(function (el) { return !el.closest(".hero"); });
@@ -194,6 +194,15 @@
       goal: form.elements.goal,
     };
 
+    // Arriving from a course page (?course=<slug>) pre-selects that course's goal
+    var courseSlug = new URLSearchParams(location.search).get("course");
+    var courseGoal = courseSlug && CONFIG.courseGoals && CONFIG.courseGoals[courseSlug];
+    if (courseGoal) {
+      Array.prototype.forEach.call(fields.goal.options, function (opt) {
+        if (opt.text === courseGoal) fields.goal.value = opt.value || opt.text;
+      });
+    }
+
     var messages = {
       name: function (v) { return v.trim().length < 2 ? "Please enter your full name." : ""; },
       email: function (v) {
@@ -248,6 +257,7 @@
         name: fields.name.value.trim(),
         email: fields.email.value.trim(),
         goal: fields.goal.value,
+        format: form.elements.format ? form.elements.format.value : "",
         message: form.elements.message.value.trim(),
       };
       var firstName = escapeHtml(data.name.split(/\s+/)[0]);
@@ -280,6 +290,7 @@
           "Name: " + data.name,
           "Email: " + data.email,
           "Learning goal: " + data.goal,
+          "Preferred format: " + (data.format || "No preference"),
         ].join("\r\n");
         var href = "mailto:" + CONFIG.contactEmail +
           "?subject=" + encodeURIComponent("Enquiry: " + data.goal + " (" + data.name + ")") +

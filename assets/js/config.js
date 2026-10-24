@@ -2,5 +2,12 @@
 window.HOE_CONFIG = {
   "contactEmail": "mansi@humansofenglish.com",
   "formEndpoint": "",
-  "instagram": "humansofenglish"
+  "instagram": "humansofenglish",
+  "courseGoals": {
+    "ielts-preparation": "IELTS preparation",
+    "toefl-preparation": "TOEFL preparation",
+    "spoken-english": "Spoken English & communication",
+    "professional-communication": "Professional English",
+    "public-speaking-personality-development": "Public speaking & personality development"
+  }
 };

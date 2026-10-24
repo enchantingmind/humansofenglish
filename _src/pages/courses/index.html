@@ -1,0 +1,84 @@
+<!--meta {
+  "title": "English Courses & Fees: IELTS, TOEFL, Spoken & Professional English",
+  "description": "Five English courses: IELTS, TOEFL, Spoken English, Professional Communication and Public Speaking. Each has a study plan, in person or online, from ₹999 per month."
+} -->
+<main id="main">
+
+<header class="page-hero">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Courses</span></li></ol></nav>
+    <p class="eyebrow">Courses</p>
+    <h1>Find the course that fits <span class="scribble c-coral">your goal.</span></h1>
+    <p class="lede">Five focused courses, each with a clear study plan and personal feedback. Learn in person or online over a video call.</p>
+    <ul class="hero-facts">
+      <li>{{icon:indian-rupee}}<span>From <strong>{{price-from}}</strong> per month</span></li>
+      <li>{{icon:map-pin}}<span>In person</span></li>
+      <li>{{icon:video}}<span>Online (video call)</span></li>
+      <li>{{icon:route}}<span>A study plan for every course</span></li>
+    </ul>
+  </div>
+</header>
+
+<section class="section" aria-labelledby="all-courses-heading">
+  <div class="container">
+    <h2 id="all-courses-heading" class="sr-only">All courses</h2>
+    {{course-cards}}
+  </div>
+</section>
+
+<section class="section section-cream has-doodles c-teal" aria-labelledby="how-plan-heading">
+  {{doodle:loops:corner-doodle corner-tr}}
+  <div class="container split">
+    <div class="split-head">
+      <p class="eyebrow">Your study plan</p>
+      <h2 id="how-plan-heading">How your study plan <span class="scribble">comes together</span></h2>
+      <p class="section-intro">Every course follows a structured plan, and we shape it around you: your level, your goal and the time you have.</p>
+      <a class="btn btn-primary" href="/contact/">Plan my course {{icon:arrow-right}}</a>
+    </div>
+    <ol class="steps">
+      <li><h3>Tell us your goal</h3><p>Choose a course and share your target, your deadline and what feels hardest right now.</p></li>
+      <li><h3>Find your starting point</h3><p>A short check of your current English shows where to focus first.</p></li>
+      <li><h3>Get your study plan</h3><p>A week-by-week plan with clear milestones, adjusted to your pace.</p></li>
+      <li><h3>Learn and practise</h3><p>Live sessions in person or online, with regular practice between them.</p></li>
+      <li><h3>Review your progress</h3><p>Personal feedback and check-ins so you can see how far you've come.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section c-sky" aria-labelledby="formats-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Two ways to learn</p>
+      <h2 id="formats-heading">In person or online, <span class="scribble">your choice</span></h2>
+      <p class="section-intro">Every course is available in both formats, with the same study plan, the same materials and the same personal feedback.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card c-coral">
+        <h3>{{icon:map-pin}}In person</h3>
+        <p>Face-to-face sessions for learners who like to practise in the room, with real-time conversation and feedback.</p>
+      </div>
+      <div class="info-card c-sky">
+        <h3>{{icon:video}}Online, over a video call</h3>
+        <p>Live, interactive sessions from home or work. All you need is a stable internet connection and a device with a microphone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light c-violet" aria-labelledby="fees-heading">
+  <div class="container fees-panel">
+    <div>
+      <p class="eyebrow">Fees</p>
+      <h2 id="fees-heading">Simple monthly fees</h2>
+      <p class="section-intro">All courses start from <strong>{{price-from}} per month</strong>. Your exact fee depends on the course and the plan you choose, and we'll confirm it with you before you start, with no surprises.</p>
+    </div>
+    <div class="fees-price">
+      <p class="price-card-label">Courses from</p>
+      <p class="price-card-amount">From <strong>{{price-from}}</strong><span>/ month</span></p>
+      <a class="btn btn-primary btn-lg" href="/contact/">Ask about fees {{icon:arrow-right}}</a>
+    </div>
+  </div>
+</section>
+
+{{include:cta-band}}
+</main>

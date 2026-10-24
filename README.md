@@ -39,6 +39,11 @@ Commit the generated files along with your changes. GitHub Pages serves them as-
 - **Add a learning resource:** add an entry to `resources` in `_src/data.mjs`, then
   create `_src/pages/learning-resources/<slug>.html` with `"layout": "article"`.
   Cards, filters, search, footer links and the sitemap update automatically.
+- **Courses and fees:** edit `courses` in `_src/data.mjs` (title, duration, level,
+  who it's for, outcomes, study plan, what's included). The "From ₹999 / month" price
+  is `priceFrom` / `pricePeriod` in `site`. A new course also needs a page file
+  `_src/pages/courses/<slug>.html` with `"layout": "course"`, and its `goal` must
+  match an option in the contact form's goal list.
 - **Add a case study:** same pattern with `caseStudies` and `_src/pages/case-studies/`.
   Case studies are labelled as *example journeys*. Keep them that way unless they
   describe a real learner who has given permission.

@@ -23,12 +23,22 @@
         <option>Another English exam</option>
         <option>Spoken English &amp; communication</option>
         <option>Professional English</option>
+        <option>Public speaking &amp; personality development</option>
         <option>I'm not sure yet</option>
       </select>
       {{icon:chevron-down:select-icon}}
     </div>
     <p class="field-error" id="cf-goal-error" hidden></p>
   </div>
+
+  <fieldset class="field field-choice">
+    <legend>Preferred format <span class="optional">(optional)</span></legend>
+    <div class="choice-row">
+      <label class="choice"><input type="radio" name="format" value="In person"><span>{{icon:map-pin}}In person</span></label>
+      <label class="choice"><input type="radio" name="format" value="Online (video call)"><span>{{icon:video}}Online</span></label>
+      <label class="choice"><input type="radio" name="format" value="No preference" checked><span>No preference</span></label>
+    </div>
+  </fieldset>
 
   <div class="field">
     <label for="cf-message">Message <span class="optional">(optional)</span></label>

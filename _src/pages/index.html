@@ -22,7 +22,7 @@
       <h1 id="hero-heading">Your English. Your Future. <span class="scribble c-sun">Your Voice.</span></h1>
       <p class="hero-lede">Prepare for IELTS, TOEFL and other English exams while building the communication skills to succeed in study, work and everyday life.</p>
       <div class="btn-row">
-        <a class="btn btn-primary btn-lg" href="#pathways">Explore Our Courses {{icon:arrow-right}}</a>
+        <a class="btn btn-primary btn-lg" href="/courses/">Explore Our Courses {{icon:arrow-right}}</a>
         <a class="btn btn-secondary btn-lg" href="/learning-resources/">Discover Free Resources</a>
       </div>
       <ul class="benefit-list">
@@ -48,37 +48,15 @@
 <section class="section has-doodles c-coral" id="pathways" aria-labelledby="pathways-heading">
   {{doodle:spiral:corner-doodle corner-spiral}}
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">Learning pathways</p>
-      <h2 id="pathways-heading">What would you like to <span class="scribble">achieve?</span></h2>
-      <p class="section-intro">Choose a pathway to see how we approach it. Each one combines focused skills practice with the real-world English you'll use every day.</p>
+    <div class="section-head section-head-row">
+      <div>
+        <p class="eyebrow">Our courses</p>
+        <h2 id="pathways-heading">What would you like to <span class="scribble">achieve?</span></h2>
+        <p class="section-intro">Five focused courses, each with a clear study plan and personal feedback. Learn in person or online over a video call, from <strong>{{price-from}} per month</strong>.</p>
+      </div>
+      <a class="text-link" href="/courses/">Compare all courses {{icon:arrow-right}}</a>
     </div>
-    <div class="pathway-grid">
-      <article class="pathway-card c-violet">
-        <span class="icon-tile">{{icon:graduation-cap}}</span>
-        <h3 class="card-title"><a class="stretched-link" href="/exam-preparation/#ielts">IELTS Preparation</a></h3>
-        <p class="card-text">Build the reading, writing, listening and speaking skills you need for your target IELTS score.</p>
-        <span class="text-link" aria-hidden="true">Explore IELTS {{icon:arrow-right}}</span>
-      </article>
-      <article class="pathway-card c-sky">
-        <span class="icon-tile">{{icon:book-open}}</span>
-        <h3 class="card-title"><a class="stretched-link" href="/exam-preparation/#toefl">TOEFL Preparation</a></h3>
-        <p class="card-text">Practise academic English and develop confidence across the TOEFL test sections.</p>
-        <span class="text-link" aria-hidden="true">Explore TOEFL {{icon:arrow-right}}</span>
-      </article>
-      <article class="pathway-card c-coral">
-        <span class="icon-tile">{{icon:messages-square}}</span>
-        <h3 class="card-title"><a class="stretched-link" href="/communication-skills/#speaking">Spoken English &amp; Communication</a></h3>
-        <p class="card-text">Improve fluency, pronunciation, vocabulary, active listening and everyday conversation.</p>
-        <span class="text-link" aria-hidden="true">Improve Your Speaking {{icon:arrow-right}}</span>
-      </article>
-      <article class="pathway-card c-teal">
-        <span class="icon-tile">{{icon:briefcase}}</span>
-        <h3 class="card-title"><a class="stretched-link" href="/communication-skills/#professional">Professional English</a></h3>
-        <p class="card-text">Develop the English skills needed for interviews, presentations, meetings and workplace communication.</p>
-        <span class="text-link" aria-hidden="true">Build Professional Skills {{icon:arrow-right}}</span>
-      </article>
-    </div>
+    {{course-cards}}
   </div>
 </section>
 

@@ -20,7 +20,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { site, nav, categories, resources, caseStudies, categoryLabel } from "../_src/data.mjs";
+import { site, nav, categories, resources, caseStudies, courses, categoryLabel } from "../_src/data.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SRC = path.join(ROOT, "_src");
@@ -80,6 +80,158 @@ function caseCard(c) {
 const caseCards = (exclude) =>
   `<div class="case-grid">${caseStudies.filter((c) => c.slug !== exclude).map(caseCard).join("\n")}</div>`;
 
+// ---------- courses ----------
+const priceHtml = () => `From <strong>${esc(site.priceFrom)}</strong><span>/ ${esc(site.pricePeriod)}</span>`;
+const modeChips = () =>
+  `<ul class="mode-chips" aria-label="How you can learn"><li>${icon("map-pin")}In person</li><li>${icon("video")}Online (video call)</li></ul>`;
+
+function courseCard(c, headingLevel = 3) {
+  const h = "h" + headingLevel;
+  return `<article class="course-card ${c.colour}">
+  <div class="course-card-top"><span class="icon-tile">${icon(c.icon)}</span><p class="price-tag">${priceHtml()}</p></div>
+  <${h} class="card-title"><a class="stretched-link" href="/courses/${c.slug}/">${esc(c.title)}</a></${h}>
+  <p class="card-text">${esc(c.short)}</p>
+  <ul class="course-meta"><li>${icon("calendar-days")}${esc(c.duration)}</li><li>${icon("target")}${esc(c.level)}</li></ul>
+  ${modeChips()}
+  <span class="text-link" aria-hidden="true">View course &amp; study plan ${icon("arrow-right")}</span>
+</article>`;
+}
+
+const courseHelpCard = () => `<aside class="course-card course-help c-sun" aria-label="Help choosing a course">
+  <span class="icon-tile">${icon("compass")}</span>
+  <h3 class="card-title">Not sure which course is right?</h3>
+  <p class="card-text">Tell us your goal and we'll suggest a course and a study plan. Or try our quick level self-check first.</p>
+  <div class="btn-row"><a class="btn btn-primary" href="/contact/">Ask us ${icon("arrow-right")}</a><a class="btn btn-secondary" href="/#level">Level self-check</a></div>
+</aside>`;
+
+// Full list (5 courses + help card fills a 3×2 grid); on a course page, the other four in one row.
+const courseCards = (exclude) => {
+  const list = courses.filter((c) => c.slug !== exclude).map((c) => courseCard(c));
+  return exclude
+    ? `<div class="course-grid course-grid-row">${list.join("\n")}</div>`
+    : `<div class="course-grid">${list.join("\n")}\n${courseHelpCard()}</div>`;
+};
+
+function courseLayout(meta, body) {
+  const c = courses.find((x) => x.slug === meta.slug);
+  if (!c) throw new Error("Unknown course slug: " + meta.slug);
+  const enquire = `/contact/?course=${c.slug}#contact-form-heading`;
+  const list = (items) => `<ul class="check-list">${items.map((t) => `<li>${icon("check")}<span>${esc(t)}</span></li>`).join("")}</ul>`;
+  const includeIcons = ["users", "clipboard-check", "book-marked", "file-check"];
+  return `<main id="main">
+<header class="page-hero course-hero ${c.colour}">
+  <div class="container course-hero-grid">
+    <div>
+      ${breadcrumb([["/", "Home"], ["/courses/", "Courses"], ["", c.title]])}
+      <p class="eyebrow">Course</p>
+      <h1>${esc(c.title)}</h1>
+      <p class="lede">${esc(c.short)}</p>
+      <ul class="course-meta course-meta-lg"><li>${icon("calendar-days")}${esc(c.duration)}</li><li>${icon("target")}${esc(c.level)}</li></ul>
+    </div>
+    <aside class="price-card" aria-label="Fees and format">
+      <p class="price-card-label">Course fees</p>
+      <p class="price-card-amount">${priceHtml()}</p>
+      ${modeChips()}
+      <a class="btn btn-primary btn-lg btn-block" href="${enquire}">Enquire about this course ${icon("arrow-right")}</a>
+      <p class="price-card-note">Your exact fee depends on the plan you choose, and we confirm it with you before you start.</p>
+    </aside>
+  </div>
+</header>
+
+<section class="section ${c.colour}" aria-labelledby="fit-heading">
+  <div class="container split">
+    <div class="split-head">
+      <p class="eyebrow">Is it for you?</p>
+      <h2 id="fit-heading">Who this course is for</h2>
+      ${list(c.forWho)}
+    </div>
+    <div class="info-card outcome-card">
+      <h3>${icon("sparkles")}What you'll be able to do</h3>
+      ${list(c.outcomes)}
+    </div>
+  </div>
+</section>
+
+<section class="section section-cream has-doodles ${c.colour}" aria-labelledby="plan-heading">
+  ${doodle("spiral", "corner-doodle corner-spiral")}
+  <div class="container container-narrow">
+    <p class="eyebrow">Study plan</p>
+    <h2 id="plan-heading">Your ${scribble("study plan", "")}</h2>
+    <p class="section-intro">A typical plan for this course. We adjust the pace and focus to your level, your goal and your schedule.</p>
+    <ol class="study-plan">
+      ${c.plan.map((p, i) => `<li><span class="study-step" aria-hidden="true">${i + 1}</span><div><p class="study-when">${esc(p.when)}</p><h3>${esc(p.title)}</h3><p>${esc(p.text)}</p></div></li>`).join("\n      ")}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="format-heading">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">How you learn</p>
+      <h2 id="format-heading">In person or online, your choice</h2>
+      <p class="section-intro">The same course, the same study plan and the same personal feedback, whichever format suits you.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card c-coral">
+        <h3>${icon("map-pin")}In person</h3>
+        <p>Face-to-face sessions for learners who like to practise in the room, with real-time conversation and feedback.</p>
+      </div>
+      <div class="info-card c-sky">
+        <h3>${icon("video")}Online, over a video call</h3>
+        <p>Live sessions from wherever you are. All you need is a stable internet connection and a device with a microphone.</p>
+      </div>
+    </div>
+    <h3 class="includes-heading">What's included</h3>
+    <ul class="includes-grid">
+      ${c.includes.map((t, i) => `<li>${icon(includeIcons[i % includeIcons.length])}<span>${esc(t)}</span></li>`).join("\n      ")}
+    </ul>
+  </div>
+</section>
+${body.trim() ? expand(body, { slug: c.slug }) : ""}
+<section class="section section-surface" aria-labelledby="course-resources-heading">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <h2 id="course-resources-heading">Start with these free guides</h2>
+      <a class="text-link" href="/learning-resources/">All resources ${icon("arrow-right")}</a>
+    </div>
+    ${expand(`{{resources:${c.resources.join(",")}}}`)}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="other-courses-heading">
+  <div class="container">
+    <div class="section-head section-head-row">
+      <h2 id="other-courses-heading">Other courses</h2>
+      <a class="text-link" href="/courses/">All courses ${icon("arrow-right")}</a>
+    </div>
+    ${courseCards(c.slug)}
+  </div>
+</section>
+${ctaBand()}
+</main>`;
+}
+
+function courseJsonLd(c, route) {
+  const price = String(site.priceFrom).replace(/[^\d.]/g, "");
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: c.title,
+    description: c.short,
+    url: site.url + route,
+    provider: { "@type": "EducationalOrganization", name: site.name, url: site.url },
+    offers: {
+      "@type": "Offer",
+      category: "Paid",
+      priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "INR", unitText: "MONTH", referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" } },
+    },
+    hasCourseInstance: [
+      { "@type": "CourseInstance", courseMode: "Onsite" },
+      { "@type": "CourseInstance", courseMode: "Online" },
+    ],
+  };
+}
+
 function categoryFilters() {
   const btn = (id, label, pressed) =>
     `<button type="button" class="filter-btn" data-filter="${id}" aria-pressed="${pressed}">${esc(label)}</button>`;
@@ -102,6 +254,8 @@ function expand(html, ctx = {}) {
       return `<div class="resource-grid">${picked.join("\n")}</div>`;
     })
     .replace(/\{\{case-cards\}\}/g, () => caseCards(ctx.slug))
+    .replace(/\{\{course-cards\}\}/g, () => courseCards(ctx.slug))
+    .replace(/\{\{price-from\}\}/g, () => esc(site.priceFrom))
     .replace(/\{\{category-filters\}\}/g, categoryFilters)
     .replace(/\{\{contact-links(?::([\w -]+))?\}\}/g, (_, c) => contactLinks(c ? "contact-links " + c : undefined))
     .replace(/\{\{doodle:([\w-]+)(?::([\w -]+))?\}\}/g, (_, n, c) => doodle(n, c || ""))
@@ -176,6 +330,7 @@ function footer() {
       ${contact}
     </div>
     ${col("Learn", [
+      ["/courses/", "Courses & Fees"],
       ["/exam-preparation/", "Exam Preparation"],
       ["/exam-preparation/#ielts", "IELTS Preparation"],
       ["/exam-preparation/#toefl", "TOEFL Preparation"],
@@ -376,6 +531,9 @@ for (const file of walk(PAGES)) {
   } else if (meta.layout === "case") {
     main = caseLayout(meta, body);
     type = "article";
+  } else if (meta.layout === "course") {
+    main = courseLayout(meta, body);
+    jsonLd = courseJsonLd(courses.find((x) => x.slug === meta.slug), route);
   } else {
     main = expand(body);
   }
@@ -410,7 +568,12 @@ fs.mkdirSync(path.join(ROOT, "assets", "js"), { recursive: true });
 fs.writeFileSync(
   path.join(ROOT, "assets", "js", "config.js"),
   `// Generated by tools/build.mjs from _src/data.mjs. Edit there, not here.\nwindow.HOE_CONFIG = ${JSON.stringify(
-    { contactEmail: site.contactEmail, formEndpoint: site.formEndpoint, instagram: site.instagram },
+    {
+      contactEmail: site.contactEmail,
+      formEndpoint: site.formEndpoint,
+      instagram: site.instagram,
+      courseGoals: Object.fromEntries(courses.map((c) => [c.slug, c.goal])),
+    },
     null,
     2
   )};\n`
