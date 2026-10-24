@@ -351,7 +351,7 @@ function footer() {
   <div class="container footer-bottom">
     <div class="footer-credits">
       <p>&copy; <span data-year>2026</span> Humans of English. All rights reserved.</p>
-      <p class="made-by">Made with ${icon("heart", "heart")}<span class="sr-only">love</span> by <a href="https://tavzuran.com/" rel="noopener">Tavzuran</a></p>
+      <p class="made-by">Made by <a href="https://tavzuran.com/" rel="noopener"><img src="/assets/images/tavzuran-icon.png" alt="Tavzuran" title="Tavzuran" width="20" height="20" loading="lazy"></a></p>
     </div>
     <a class="back-to-top" href="#top">${icon("arrow-up")}Back to top</a>
   </div>
