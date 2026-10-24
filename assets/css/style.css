@@ -1097,9 +1097,6 @@ td { color: var(--color-text-muted); }
 .back-to-top .icon { width: 16px; height: 16px; }
 .footer-bottom p { margin: 0; }
 .footer-credits { display: grid; gap: var(--space-1); }
-.made-by { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.3em; }
-.made-by a { display: inline-flex; align-items: center; gap: 0.4em; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-.made-by img { width: 20px; height: 20px; padding: 2px; background: #fff; border-radius: 5px; }
 
 /* =========================================================
    Illustrated layer: colour, hand-drawn lines, gentle motion
