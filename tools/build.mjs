@@ -188,6 +188,7 @@ function footer() {
     ])}
     ${col("Humans of English", [
       ["/about/", "About Us"],
+      ["/about/mansi-singh/", "Our Founder"],
       ["/contact/", "Contact"],
       ["/privacy-policy/", "Privacy Policy"],
     ])}
