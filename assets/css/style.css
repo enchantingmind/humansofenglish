@@ -1328,6 +1328,32 @@ td { color: var(--color-text-muted); }
 
 .cta-band .scribble { --c: var(--sun); }
 
+/* ---------- Direct contact links (email, Instagram) ---------- */
+.contact-links, .footer-contact { list-style: none; display: grid; gap: var(--space-2); }
+.contact-links li, .footer-contact li { display: flex; align-items: center; gap: var(--space-3); min-width: 0; }
+.contact-links a { font-weight: 600; overflow-wrap: anywhere; }
+.contact-links .icon {
+  width: 36px; height: 36px; padding: 8px;
+  border-radius: 46% 54% 52% 48% / 52% 46% 54% 48%;
+  background: var(--t, var(--color-primary-light));
+  color: var(--x, var(--color-primary));
+}
+.contact-links li:nth-child(2) .icon { background: var(--pink-tint); color: var(--pink-ink); }
+.contact-links .handle { white-space: nowrap; }
+.contact-card .contact-links { margin-top: var(--space-4); padding-left: 0; }
+.split-head .info-card + .info-card { margin-top: var(--space-4); }
+
+.contact-direct { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.contact-direct > p { margin-bottom: var(--space-3); color: #DCE9F7; font-weight: 600; }
+.contact-links-light a { color: #fff; }
+.contact-links-light a:hover { color: #fff; }
+.contact-links-light .icon, .contact-links-light li:nth-child(2) .icon { background: rgba(255, 255, 255, 0.12); color: var(--sun); }
+.contact-links-light li:nth-child(2) .icon { color: #FFB4A2; }
+
+.footer-contact { margin-top: var(--space-5); }
+.footer-contact .icon { width: 18px; height: 18px; color: var(--sun); }
+.footer-contact li:nth-child(2) .icon { color: #FFB4A2; }
+
 /* ---------- Footer: wavy top edge ---------- */
 .site-footer { position: relative; }
 .site-footer::before {

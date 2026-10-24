@@ -181,8 +181,8 @@
       modeNote.textContent = "Your message is sent securely through our form provider. We only use your details to reply to you.";
       $("[data-form-mode]", form).hidden = true;
     } else if (mode === "email" && modeNote) {
-      modeNote.textContent = "Submitting opens your own email app with your message ready to send to " + CONFIG.contactEmail + ". Nothing is sent until you press send there.";
-      if (submit) submit.firstChild.textContent = "Continue in my email app ";
+      modeNote.textContent = "Sending opens your email app with your details filled in, addressed to " + CONFIG.contactEmail + ". Just press send there.";
+      if (submit) submit.firstChild.textContent = "Send email ";
     } else if (modeNote) {
       modeNote.textContent = "Demo form: this form is not connected to an inbox yet, so nothing you enter is sent or stored. You can still try it to check your details.";
       if (submit) submit.firstChild.textContent = "Try the form ";
@@ -272,13 +272,25 @@
       }
 
       if (mode === "email") {
-        var body = "Name: " + data.name + "\nEmail: " + data.email + "\nLearning goal: " + data.goal + "\n\n" + (data.message || "");
+        var body = [
+          "Hello Humans of English,",
+          "",
+          data.message || "I'd like to find out more about learning with you.",
+          "",
+          "Name: " + data.name,
+          "Email: " + data.email,
+          "Learning goal: " + data.goal,
+        ].join("\r\n");
         var href = "mailto:" + CONFIG.contactEmail +
-          "?subject=" + encodeURIComponent("Learning goal: " + data.goal) +
+          "?subject=" + encodeURIComponent("Enquiry: " + data.goal + " (" + data.name + ")") +
           "&body=" + encodeURIComponent(body);
         window.location.href = href;
-        setStatus("info", "<strong>Your email app should now open, " + firstName + ".</strong>Your message is only sent when you press send there. If nothing opened, email us at <a href=\"mailto:" +
-          escapeHtml(CONFIG.contactEmail) + "\">" + escapeHtml(CONFIG.contactEmail) + "</a>.");
+        var mail = escapeHtml(CONFIG.contactEmail);
+        var dm = CONFIG.instagram
+          ? ", or DM us on Instagram <a href=\"https://www.instagram.com/" + escapeHtml(CONFIG.instagram) + "/\" rel=\"noopener\">@" + escapeHtml(CONFIG.instagram) + "</a>"
+          : "";
+        setStatus("info", "<strong>Almost done, " + firstName + ". Your email app should now be open.</strong>Your details are filled in. Press <em>send</em> there to reach us. If no email app opened, write to <a href=\"mailto:" +
+          mail + "\">" + mail + "</a>" + dm + ".");
         return;
       }
 

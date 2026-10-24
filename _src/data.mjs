@@ -5,8 +5,11 @@ export const site = {
   name: "Humans of English",
   tagline: "Learn English. Find Your Voice.",
   url: "https://humansofenglish.com",
-  // Leave empty until real details exist. Nothing is shown or used while empty.
-  contactEmail: "",
+  // Contact details. Leave a value empty to hide it everywhere on the site.
+  // With contactEmail set (and no formEndpoint), the contact form opens the
+  // visitor's email app with their details pre-filled, addressed to this inbox.
+  contactEmail: "mansi@humansofenglish.com",
+  instagram: "humansofenglish", // handle without the @
   // Optional form service endpoint (e.g. a Formspree form URL). When set, the
   // contact form POSTs to it; otherwise it falls back to email, then demo mode.
   formEndpoint: "",

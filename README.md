@@ -44,18 +44,21 @@ Commit the generated files along with your changes. GitHub Pages serves them as-
   describe a real learner who has given permission.
 - **Styles** need no build step. Edit `assets/css/style.css` and refresh.
 
-### Connecting the contact form
+### Contact form, email and Instagram
 
-The form validates in the browser. Until it's connected, it honestly says that it
-**does not send or store anything**. To connect it, set one of these in
-`_src/data.mjs` and rebuild:
+Contact details live in `_src/data.mjs` (rebuild after changing them):
 
-- `formEndpoint`: a form service URL (for example a Formspree form). The form POSTs
-  JSON to it and shows a real "sent" message only when the service confirms it.
-- `contactEmail`: submitting opens the visitor's email app with the message
-  pre-filled. The address also appears in the footer.
+- `contactEmail` is **mansi@humansofenglish.com**. Submitting the form validates the
+  details, then opens the visitor's own email app with a message addressed to this
+  inbox: subject `Enquiry: <goal> (<name>)`, and their message, name, email and goal
+  in the body. The visitor presses send in their email app.
+- `instagram` is **humansofenglish**. Shown as "DM us on Instagram" on the homepage,
+  contact page and footer.
+- `formEndpoint` (optional) is a form service URL, for example Formspree. When set, the form
+  sends the email itself without opening the visitor's email app, and shows "sent"
+  only when the service confirms it. Update the privacy policy if you switch.
 
-Update `_src/pages/privacy-policy.html` at the same time to describe what is collected.
+Leaving a value empty hides it everywhere.
 
 ## Deploying (GitHub Pages)
 
